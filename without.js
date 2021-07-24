@@ -13,31 +13,30 @@ const eqArrays = function(array1,array2) {
 };
 
 const withOut = function(source, itemsToRemove) {
-  let newArray = [source];
-  for (let i = 0; i <= newArray.length; i++) {
-    for (value of itemsToRemove) {
-      if (source[i] === value) {
-        let removedItem = newArray.indexOf(value);
-        newArray.splice(removedItem, 1);
-      }
+  let result = [];
+  let inList = false;
+
+  for (value1 of source) {
+    
+    for (value2 of itemsToRemove) { //loop through all the values in the itemsToRemove list
+      
+      if (value1 === value2) { //check if the current value1 equal to current value2
+        inList = true; //set flag to true to indicate that value1 was found in the list itemsToRemove
+      }//end if
+
+    }//end for
+
+    if (inList === false) { //check did we find value1 in the list itemsToRemove
+      result.push(value1); //add
     }
+
+    inList = false; //reset flag
   }
-  return newArray;
+  return result;
 };
-without([1, 2, 3], [1]); // => [2, 3]
-without(["1", "2", "3"], [1, 2, "3"]); // => ["1", "2"]
 
-    
-    
-    
-   
-
-
-
-
-
-
-
+console.log(withOut([1, 2, 3], [1])); // => [2, 3]
+console.log(withOut(["1", "2", "3"], [1, 2, "3"])); // => ["1", "2"]
 
 const assertArraysEqual = function(array1,array2) {
   let actual = eqArrays(array1,array2);
