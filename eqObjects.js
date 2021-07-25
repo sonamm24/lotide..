@@ -15,13 +15,13 @@ const eqObjects = function(Object1, Object2) {
   } else {
 
       
-    for (let   key of  Object.keys(Object1)) {
+    for (let key of Object.keys(Object1)) {
        
       if ((Array.isArray(Object1[key]) && (Object2[key] === false))) {
         return false;
       }
     }
-    for (const  key in Object2) {
+    for (const key in Object2) {
    
       if (!assertEqual(Object1[key], Object2[key])) {
         return false;
@@ -31,9 +31,14 @@ const eqObjects = function(Object1, Object2) {
     return true;
   }
 };
-const ab = { a: "1", b: "2" };
-const ba = { b: "2", a: "1" };
+
+let ab = { a: 1, b: "2" };
+let ba = { b: "2", a: 1 };
 console.log(eqObjects(ab, ba)); // => true
   
 const abc = { a: "1", b: "2", c: "3" };
 console.log(eqObjects(ab, abc)); // => false
+
+ab = { a: '1', b: 2 };
+ba = { b: 2, a: '1' };
+console.log(eqObjects(ab, ba));
