@@ -10,12 +10,19 @@ const assertEqual = function(actual, expected) {
 
 
 
-const findKeyByValue =  function(object, value) {
+const findKeyByValue =  function(object, givenValue) {
   for (const key in object) {
-    console.log(`${key}: ${object[key]}`);
+
+    if (givenValue === object[key]){
+        return key;
+    }
+    
   }
+
+  return undefined;
 };
 
+const bestTVShowsByGenre = ["The Expanse" , "Brooklyn Nine-Nine", "The Wire"];
 
 const bestTVShowsByGenre = {
   sci_fi: "The Expanse",
